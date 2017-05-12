@@ -54,12 +54,12 @@
 		F509CFD71EC6388700388EB4 /* on-the-map */ = {
 			isa = PBXGroup;
 			children = (
-				F509CFF01EC63D0C00388EB4 /* Supporting Files */,
-				F509CFEF1EC63C4E00388EB4 /* Assets */,
-				F509CFEC1EC63B4100388EB4 /* Controllers */,
-				F509CFEB1EC63B3800388EB4 /* Views */,
-				F509CFEA1EC63B0B00388EB4 /* Models */,
 				F509CFD81EC6388700388EB4 /* AppDelegate.swift */,
+				F509CFEA1EC63B0B00388EB4 /* Models */,
+				F509CFEB1EC63B3800388EB4 /* Views */,
+				F509CFEC1EC63B4100388EB4 /* Controllers */,
+				F509CFEF1EC63C4E00388EB4 /* Assets */,
+				F509CFF01EC63D0C00388EB4 /* Supporting Files */,
 			);
 			path = "on-the-map";
 			sourceTree = "<group>";
@@ -341,6 +341,7 @@
 				F509CFE91EC6388700388EB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
