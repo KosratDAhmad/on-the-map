@@ -54,14 +54,54 @@
 		F509CFD71EC6388700388EB4 /* on-the-map */ = {
 			isa = PBXGroup;
 			children = (
+				F509CFF01EC63D0C00388EB4 /* Supporting Files */,
+				F509CFEF1EC63C4E00388EB4 /* Assets */,
+				F509CFEC1EC63B4100388EB4 /* Controllers */,
+				F509CFEB1EC63B3800388EB4 /* Views */,
+				F509CFEA1EC63B0B00388EB4 /* Models */,
 				F509CFD81EC6388700388EB4 /* AppDelegate.swift */,
+			);
+			path = "on-the-map";
+			sourceTree = "<group>";
+		};
+		F509CFEA1EC63B0B00388EB4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F509CFEB1EC63B3800388EB4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F509CFEC1EC63B4100388EB4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				F509CFDA1EC6388700388EB4 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F509CFEF1EC63C4E00388EB4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
 				F509CFDC1EC6388700388EB4 /* Main.storyboard */,
 				F509CFDF1EC6388700388EB4 /* Assets.xcassets */,
 				F509CFE11EC6388700388EB4 /* LaunchScreen.storyboard */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		F509CFF01EC63D0C00388EB4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				F509CFE41EC6388700388EB4 /* Info.plist */,
 			);
-			path = "on-the-map";
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
