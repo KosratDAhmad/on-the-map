@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -19,6 +19,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         indicatorView.hidesWhenStopped = true
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,5 +52,14 @@ class LoginViewController: UIViewController {
         })
         alert.addAction(dismissAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        }
+        return true
     }
 }
