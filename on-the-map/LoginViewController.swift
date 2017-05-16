@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Check for empty state
         if emailTextField.text == "" || passwordTextField.text == "" {
-            displayError("Empty Email or Password!")
+            displayError("Empty Email or Password.")
         } else {
             UdacityClient.sharedInstance().login(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
                 performUIUpdatesOnMain {
@@ -45,7 +45,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     if success {
                         self.completeLogin()
                     } else {
-                        self.displayError("Email or Password is wrong!")
+                        self.displayError("Invalid Email or Password.")
                     }
                 }
             }
