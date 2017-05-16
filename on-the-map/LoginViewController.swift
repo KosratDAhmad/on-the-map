@@ -9,7 +9,8 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
+    
+    // MARK: Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: BorderedButton!
@@ -23,29 +24,57 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+    // MARK: Actions
+    
+    /// Login method which will start Udcaity client to get user session from Udacity api.
+    ///
+    /// - Parameter sender: Login button
     @IBAction func login(_ sender: Any) {
         
+        // Start animating progress
         indicatorView.startAnimating()
         
+        // Check for empty state
         if emailTextField.text == "" || passwordTextField.text == "" {
-            alertEmptyState()
+            displayError("Empty Email or Password!")
+        } else {
+            UdacityClient.sharedInstance().login(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
+                performUIUpdatesOnMain {
+                    self.indicatorView.stopAnimating()
+                    if success {
+                        self.completeLogin()
+                    } else {
+                        self.displayError("Email or Password is wrong!")
+                    }
+                }
+            }
         }
-        
-        indicatorView.stopAnimating()
-    }
-
-    @IBAction func signUp(_ sender: Any) {
-        UIApplication.shared.open(URL(string: "https://auth.udacity.com/sign-up?next=%22%22")!, options: [:],completionHandler: nil)
     }
     
-    private func alertEmptyState(){
-        let alert = UIAlertController(title: "", message: "Empty Email or Password.", preferredStyle: .alert)
+    /// Load a browser to user for sign up from Udacity.
+    ///
+    /// - Parameter sender: Sign up button
+    @IBAction func signUp(_ sender: Any) {
+        UIApplication.shared.open(URL(string: "https://www.udacity.com/account/auth#!/signup")!, options: [:],completionHandler: nil)
+    }
+    
+    // MARK: Helper methods
+    
+    /// Complete login and start main navigation controller.
+    private func completeLogin(){
+        let controller = storyboard!.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+        present(controller, animated: true, completion: nil)
+    }
+    
+    /// Display error message to the user by using UIAlertAction
+    ///
+    /// - Parameter message: Error message
+    private func displayError(_ message: String){
+        
+        indicatorView.stopAnimating()
+        
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         
         let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
             self.dismiss(animated: true, completion: nil)
@@ -53,6 +82,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(dismissAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    // MARK: Delegates 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
