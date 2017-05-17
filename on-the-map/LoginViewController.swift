@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,6 +17,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: BorderedButton!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
+    var reachability: Reachability?
+    var isNetwordReached = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +27,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        // Start reachability 
+        setupReachability()
+        startNotifier()
+        
+        
+    }
+    
+    // MARK: Reachability methods.
+    
+    func setupReachability() {
+        
+        let reachability = Reachability()
+        self.reachability = reachability
+        
+        reachability?.whenReachable = { reachability in
+            DispatchQueue.main.async {
+                self.isNetwordReached = true
+            }
+        }
+        reachability?.whenUnreachable = { reachability in
+            DispatchQueue.main.async {
+                self.isNetwordReached = false
+            }
+        }
+        
+    }
+    func startNotifier() {
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            print("Unable to start\nnotifier")
+            return
+        }
+    }
+    
+    func stopNotifier() {
+        reachability?.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+        reachability = nil
+    }
+    
+    deinit {
+        stopNotifier()
     }
     
     // MARK: Actions
@@ -39,15 +87,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if emailTextField.text == "" || passwordTextField.text == "" {
             displayError("Empty Email or Password.")
         } else {
-            UdacityClient.sharedInstance().login(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
-                performUIUpdatesOnMain {
-                    self.indicatorView.stopAnimating()
-                    if success {
-                        self.completeLogin()
-                    } else {
-                        self.displayError("Invalid Email or Password.")
+            
+            if isNetwordReached {
+                UdacityClient.sharedInstance().login(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
+                    performUIUpdatesOnMain {
+                        self.indicatorView.stopAnimating()
+                        if success {
+                            self.completeLogin()
+                        } else {
+                            self.displayError("Invalid Email or Password.")
+                        }
                     }
                 }
+            } else {
+                displayError("No Internet Connection.")
             }
         }
     }
@@ -83,7 +136,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: Delegates 
+    // MARK: Delegates
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
