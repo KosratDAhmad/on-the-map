@@ -110,23 +110,33 @@
             <point key="canvasLocation" x="84" y="121"/>
         </scene>
         <!--List-->
-        <scene sceneID="51I-do-8NR">
+        <scene sceneID="WNI-QT-KtX">
             <objects>
-                <viewController id="ukZ-GE-ucY" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JIa-U5-Lno"/>
-                        <viewControllerLayoutGuide type="bottom" id="sRm-th-YzI"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="s6d-Jo-XP8">
+                <tableViewController id="s9Z-fm-Gkn" customClass="TableViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RXF-Qk-hJ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="CKR-ml-x4d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9du-wc-rzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationTableViewCell" id="EOk-2f-bOK">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EOk-2f-bOK" id="5Yy-an-M1L">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="s9Z-fm-Gkn" id="iqQ-Rd-1mn"/>
+                            <outlet property="delegate" destination="s9Z-fm-Gkn" id="odF-RE-23m"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="57x-4i-YCX"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6XU-dR-OUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2633" y="559"/>
+            <point key="canvasLocation" x="2633" y="588"/>
         </scene>
         <!--Map-->
         <scene sceneID="BfZ-gq-OlG">
@@ -195,7 +205,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="jcw-CN-ikO" kind="relationship" relationship="viewControllers" id="x9U-a5-PLC"/>
-                        <segue destination="ukZ-GE-ucY" kind="relationship" relationship="viewControllers" id="QHf-AB-Lja"/>
+                        <segue destination="s9Z-fm-Gkn" kind="relationship" relationship="viewControllers" id="01o-4s-2Ya"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vQ-bu-PyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
