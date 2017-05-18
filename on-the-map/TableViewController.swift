@@ -9,21 +9,21 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
+    
     var studentLocations = [StudentLocation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Get temporary locations
         let locations = hardCodedLocationData()
         
         for dictionary in locations {
             
             studentLocations.append(StudentLocation.init(dictionary: dictionary))
-        }        
+        }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         /* Get cell type */
@@ -33,6 +33,7 @@ class TableViewController: UITableViewController {
         
         /* Set cell defaults */
         cell?.textLabel!.text = "\(location.firstName) \(location.lastName)"
+        cell?.detailTextLabel?.text = location.mediaURL
         cell?.imageView!.image = UIImage(named: "icon_pin")
         
         return cell!
@@ -44,8 +45,22 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let location = studentLocations[(indexPath as NSIndexPath).row]
+        
+        UIApplication.shared.open(URL(string: location.mediaURL)!, options: [:], completionHandler: { success in
+            
+            if !success {
+                let alert = UIAlertController(title: "", message: "Invalide Link", preferredStyle: .alert)
+                
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alert.addAction(dismissAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
     }
-
+    
     // TODO: Remove temporary sample data.
     
     // MARK: - Sample Data
@@ -102,5 +117,5 @@ class TableViewController: UITableViewController {
             ]
         ]
     }
-
+    
 }
