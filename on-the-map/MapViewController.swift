@@ -15,6 +15,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
+        
         // Get temporary locations
         let locations = hardCodedLocationData()
         
@@ -67,7 +69,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return pinView
     }
     
-    
     // This delegate method is implemented to respond to taps. It opens the system browser
     // to the URL specified in the annotationViews subtitle property.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -75,7 +76,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
+                app.open(URL(string: toOpen)!, options: [:], completionHandler: { success in
+                    if !success {
+                        let alert = UIAlertController(title: "", message: "Invalide Link", preferredStyle: .alert)
+                        
+                        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+                            self.dismiss(animated: true, completion: nil)
+                        })
+                        alert.addAction(dismissAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                })
             }
         }
     }
