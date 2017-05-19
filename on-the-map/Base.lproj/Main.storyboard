@@ -169,17 +169,26 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7yY-xc-pIM">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </mapView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pMr-rr-yfc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.37759524828767121" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pMr-rr-yfc" firstAttribute="top" secondItem="Zuo-0Z-bdc" secondAttribute="bottom" id="5a8-yU-Ife"/>
                             <constraint firstItem="7yY-xc-pIM" firstAttribute="top" secondItem="Zuo-0Z-bdc" secondAttribute="bottom" id="B4k-2I-2me"/>
                             <constraint firstItem="7yY-xc-pIM" firstAttribute="leading" secondItem="u8s-iQ-uqZ" secondAttribute="leadingMargin" constant="-16" id="DLv-1X-W4r"/>
+                            <constraint firstItem="p5s-2E-j5y" firstAttribute="top" secondItem="pMr-rr-yfc" secondAttribute="bottom" id="EZA-cF-DfL"/>
+                            <constraint firstItem="pMr-rr-yfc" firstAttribute="leading" secondItem="u8s-iQ-uqZ" secondAttribute="leadingMargin" constant="-16" id="R7g-Hd-ktF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pMr-rr-yfc" secondAttribute="trailing" constant="-16" id="ZXg-fV-F6n"/>
                             <constraint firstItem="p5s-2E-j5y" firstAttribute="top" secondItem="7yY-xc-pIM" secondAttribute="bottom" id="hlb-QE-Cyy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7yY-xc-pIM" secondAttribute="trailing" constant="-16" id="oPg-0b-fnZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-deselected" id="UA4-bw-DKF"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="pMr-rr-yfc" id="Z0o-6S-LAw"/>
                         <outlet property="mapView" destination="7yY-xc-pIM" id="lH3-08-Cy2"/>
                     </connections>
                 </viewController>
@@ -208,7 +217,7 @@
             <objects>
                 <tabBarController id="9vA-d8-CQk" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="BrK-tM-fJX">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="BpJ-NO-uSN"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="BpJ-NO-uSN"/>
                         <rightBarButtonItems>
                             <barButtonItem image="icon_addpin" id="3iH-UA-P02"/>
                             <barButtonItem image="icon_refresh" id="fpy-Z2-JFB"/>

@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var studentLocations = [StudentLocation]()
+    var studentLocations = [StudentInformation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class TableViewController: UITableViewController {
         
         for dictionary in locations {
             
-            studentLocations.append(StudentLocation.init(dictionary: dictionary))
+            studentLocations.append(StudentInformation.init(dictionary: dictionary))
         }
     }
     

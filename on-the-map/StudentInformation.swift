@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct StudentLocation {
+struct StudentInformation {
     
     // MARK: Properties
     
@@ -28,5 +28,17 @@ struct StudentLocation {
         mediaURL = dictionary["mediaURL"] as! String
         latitude = dictionary["latitude"] as! Double
         longitude = dictionary["longitude"] as! Double
+    }
+    
+    static func locationsFromResults(_ results: [[String:AnyObject]]) -> [StudentInformation] {
+        
+        var locations = [StudentInformation]()
+        
+        // iterate through array of dictionaries, each Movie is a dictionary
+        for result in results {
+            locations.append(StudentInformation(dictionary: result))
+        }
+        
+        return locations
     }
 }
