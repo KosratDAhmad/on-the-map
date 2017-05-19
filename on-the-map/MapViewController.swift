@@ -21,7 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
+        
         if appDelegate.studentLocation.count == 0 {
             getLocations()
         } else {
@@ -29,6 +29,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    /// Get student location data from Parse api client then save the data in the
+    /// AppDelegate to share betwenn view controllers
     private func getLocations() {
         
         activityIndicator.startAnimating()
@@ -44,13 +46,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.studentLocation = results!
-            
-            self.addPoints(results!)
+            DispatchQueue.main.async {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.studentLocation = results!
+                
+                self.addPoints(results!)
+            }
         }
     }
     
+    /// Add student location annotations to the map
+    ///
+    /// - Parameter locations: StudentInformation data object.
     private func addPoints(_ locations: [StudentInformation]) {
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
@@ -107,18 +114,30 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                app.open(URL(string: toOpen)!, options: [:], completionHandler: { success in
-                    if !success {
-                        let alert = UIAlertController(title: "", message: "Invalide Link", preferredStyle: .alert)
-                        
-                        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        alert.addAction(dismissAction)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                })
+                if toOpen == "" {
+                    displayError("Invalide Link.")
+                } else {
+                    app.open(URL(string: toOpen)!, options: [:], completionHandler: { success in
+                        if !success {
+                            self.displayError("Invalide Link.")
+                        }
+                    })
+                }
             }
         }
+    }
+    
+    /// Display error message to the user by using UIAlertAction
+    ///
+    /// - Parameter message: Error message
+    private func displayError(_ message: String){
+        
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(dismissAction)
+        present(alert, animated: true, completion: nil)
     }
 }
