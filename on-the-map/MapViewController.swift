@@ -164,7 +164,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         
         let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
-            self.dismiss(animated: true, completion: nil)
+            alert.dismiss(animated: true, completion: nil)
         })
         alert.addAction(dismissAction)
         present(alert, animated: true, completion: nil)
