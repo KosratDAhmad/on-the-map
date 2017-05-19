@@ -29,6 +29,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    /// Refresh data by getting from Parse api.
+    ///
+    /// - Parameter sender: Refresh button item
+    @IBAction func refreshData(_ sender: Any) {
+        getLocations()
+    }
+    
     /// Get student location data from Parse api client then save the data in the
     /// AppDelegate to share betwenn view controllers
     private func getLocations() {

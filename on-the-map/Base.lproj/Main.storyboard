@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="svT-Sf-Yfi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9vA-d8-CQk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -109,7 +109,7 @@
             </objects>
             <point key="canvasLocation" x="84" y="121"/>
         </scene>
-        <!--List-->
+        <!--On The Map-->
         <scene sceneID="9Da-uJ-k4S">
             <objects>
                 <viewController id="dCR-aW-p49" customClass="TableViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
@@ -171,7 +171,17 @@
                             <constraint firstAttribute="trailing" secondItem="xgj-CP-GPt" secondAttribute="trailing" constant="-16" id="y2B-Ix-nWh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="38q-oc-Wse"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="CK1-W4-Ppp">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="vCu-pd-bPJ"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="DDj-KX-5Sy"/>
+                            <barButtonItem systemItem="refresh" id="E9a-ND-HKv">
+                                <connections>
+                                    <action selector="refreshData:" destination="dCR-aW-p49" id="p5a-2H-9MW"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="xgj-CP-GPt" id="oOA-vx-gzF"/>
                         <outlet property="tableView" destination="mD8-ra-RK1" id="NTq-wS-Sd8"/>
@@ -179,9 +189,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osb-Qd-Xmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632.8000000000002" y="563.56821589205401"/>
+            <point key="canvasLocation" x="3057" y="564"/>
         </scene>
-        <!--Map-->
+        <!--On The Map-->
         <scene sceneID="BfZ-gq-OlG">
             <objects>
                 <viewController id="jcw-CN-ikO" customClass="MapViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
@@ -213,7 +223,17 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7yY-xc-pIM" secondAttribute="trailing" constant="-16" id="oPg-0b-fnZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-deselected" id="UA4-bw-DKF"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="aDB-Ni-Xqk">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="nRB-L0-Jhj"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="pxS-rb-yra"/>
+                            <barButtonItem systemItem="refresh" id="8hl-nP-3TF">
+                                <connections>
+                                    <action selector="refreshData:" destination="jcw-CN-ikO" id="nae-Nb-fsW"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="pMr-rr-yfc" id="Z0o-6S-LAw"/>
                         <outlet property="mapView" destination="7yY-xc-pIM" id="lH3-08-Cy2"/>
@@ -221,23 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGe-DB-IQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632.8000000000002" y="-124.58770614692655"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="RsA-bg-43U">
-            <objects>
-                <navigationController storyboardIdentifier="NavigationController" id="svT-Sf-Yfi" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Cu-n4-pcB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="9vA-d8-CQk" kind="relationship" relationship="rootViewController" id="Ltf-VM-XYa"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0l8-c8-n6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="905" y="121"/>
+            <point key="canvasLocation" x="3057" y="-125"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="T13-NS-yRW">
@@ -256,13 +260,51 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="jcw-CN-ikO" kind="relationship" relationship="viewControllers" id="x9U-a5-PLC"/>
-                        <segue destination="dCR-aW-p49" kind="relationship" relationship="viewControllers" id="F0R-de-wqY"/>
+                        <segue destination="CBH-kr-DdN" kind="relationship" relationship="viewControllers" id="x9U-a5-PLC"/>
+                        <segue destination="ABR-td-oy6" kind="relationship" relationship="viewControllers" id="F0R-de-wqY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vQ-bu-PyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1708" y="121"/>
+            <point key="canvasLocation" x="1202" y="121"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="Ete-Um-PrP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CBH-kr-DdN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-deselected" id="UA4-bw-DKF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pYh-99-eeT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jcw-CN-ikO" kind="relationship" relationship="rootViewController" id="Whi-KS-vwO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UMW-Kz-6EJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2257" y="-125"/>
+        </scene>
+        <!--List-->
+        <scene sceneID="TXi-pG-Mj0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ABR-td-oy6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="38q-oc-Wse"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j6b-AC-t0G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dCR-aW-p49" kind="relationship" relationship="rootViewController" id="a67-O5-h0E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gug-GP-fwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2257" y="564"/>
         </scene>
     </scenes>
     <resources>
