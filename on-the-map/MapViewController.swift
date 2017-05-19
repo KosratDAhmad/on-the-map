@@ -36,6 +36,28 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         getLocations()
     }
     
+    /// Logout from Udacity account.
+    ///
+    /// - Parameter sender: Logout button item
+    @IBAction func logout(_ sender: Any) {
+        
+        activityIndicator.startAnimating()
+        
+        UdacityClient.sharedInstance().logout() {(success, error) in
+            
+            DispatchQueue.main.async(){
+                self.activityIndicator.stopAnimating()
+                
+                if success {
+                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginView")
+                    self.present(controller, animated: true, completion: nil)
+                } else {
+                    self.displayError("There was an error while trying to logout.")
+                }
+            }
+        }
+    }
+    
     /// Get student location data from Parse api client then save the data in the
     /// AppDelegate to share betwenn view controllers
     private func getLocations() {

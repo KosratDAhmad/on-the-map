@@ -24,12 +24,14 @@ extension UdacityClient{
     struct HTTPMethods {
         static let Post = "POST"
         static let Get = "GET"
+        static let Delete = "DELETE"
     }
     
     // MARK: JSON Header keys
     struct HeadersKey {
         static let AcceptKey = "Accept"
         static let ContentTypeKey = "Content-Type"
+        static let DeleteTokenKey = "X-XSRF-TOKEN"
     }
     
     // Mark: JSON Header values

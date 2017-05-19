@@ -116,7 +116,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     /// Complete login and start main navigation controller.
     private func completeLogin(){
-        let controller = storyboard!.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+        let controller = storyboard!.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
         present(controller, animated: true, completion: nil)
     }
     

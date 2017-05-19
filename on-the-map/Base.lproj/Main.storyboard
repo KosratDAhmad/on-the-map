@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9vA-d8-CQk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="BYZ-38-t0r" customClass="LoginViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -172,7 +172,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="CK1-W4-Ppp">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="vCu-pd-bPJ"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="vCu-pd-bPJ">
+                            <connections>
+                                <action selector="logout:" destination="dCR-aW-p49" id="oOF-Hs-fRj"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="DDj-KX-5Sy"/>
                             <barButtonItem systemItem="refresh" id="E9a-ND-HKv">
@@ -224,7 +228,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="aDB-Ni-Xqk">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="nRB-L0-Jhj"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="nRB-L0-Jhj">
+                            <connections>
+                                <action selector="logout:" destination="jcw-CN-ikO" id="e8t-yn-hNe"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="pxS-rb-yra"/>
                             <barButtonItem systemItem="refresh" id="8hl-nP-3TF">
@@ -246,7 +254,7 @@
         <!--On The Map-->
         <scene sceneID="T13-NS-yRW">
             <objects>
-                <tabBarController id="9vA-d8-CQk" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="9vA-d8-CQk" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="BrK-tM-fJX">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="BpJ-NO-uSN"/>
                         <rightBarButtonItems>
