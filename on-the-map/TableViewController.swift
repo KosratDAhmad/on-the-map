@@ -50,7 +50,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             guard (string == nil) else {
-                print(string!)
+                self.displayError("There was an error retrieving student data.")
                 return
             }
             
