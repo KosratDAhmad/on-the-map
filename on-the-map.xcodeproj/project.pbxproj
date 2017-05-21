@@ -15,6 +15,8 @@
 		F509CFF21EC64A1300388EB4 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CFF11EC64A1300388EB4 /* BorderedButton.swift */; };
 		F51BDFB31ECE46C600B43138 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51BDFB21ECE46C600B43138 /* ParseConvenience.swift */; };
 		F521BECC1ECC9CB3001A18A3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F521BECB1ECC9CB3001A18A3 /* MapViewController.swift */; };
+		F52CAB331ED0D17300AFC809 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52CAB321ED0D17300AFC809 /* AddLocationViewController.swift */; };
+		F52CAB351ED0D1C100AFC809 /* LocationVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52CAB341ED0D1C100AFC809 /* LocationVerifyViewController.swift */; };
 		F54AA0551ECDEE92001A31C4 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54AA0541ECDEE92001A31C4 /* StudentInformation.swift */; };
 		F54AA0571ECDF741001A31C4 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54AA0561ECDF741001A31C4 /* TableViewController.swift */; };
 		F54AA0591ECE318E001A31C4 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54AA0581ECE318E001A31C4 /* ParseClient.swift */; };
@@ -40,6 +42,8 @@
 		F509CFF11EC64A1300388EB4 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		F51BDFB21ECE46C600B43138 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		F521BECB1ECC9CB3001A18A3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F52CAB321ED0D17300AFC809 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		F52CAB341ED0D1C100AFC809 /* LocationVerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVerifyViewController.swift; sourceTree = "<group>"; };
 		F54AA0541ECDEE92001A31C4 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		F54AA0561ECDF741001A31C4 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		F54AA0581ECE318E001A31C4 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				F509CFDA1EC6388700388EB4 /* LoginViewController.swift */,
 				F521BECB1ECC9CB3001A18A3 /* MapViewController.swift */,
 				F54AA0561ECDF741001A31C4 /* TableViewController.swift */,
+				F52CAB321ED0D17300AFC809 /* AddLocationViewController.swift */,
+				F52CAB341ED0D1C100AFC809 /* LocationVerifyViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -312,12 +318,14 @@
 				F54AA0551ECDEE92001A31C4 /* StudentInformation.swift in Sources */,
 				F5FB3D3A1EC797F000C39AB2 /* UdacityClient.swift in Sources */,
 				F5FB3D3C1EC7983B00C39AB2 /* UdacityConstants.swift in Sources */,
+				F52CAB331ED0D17300AFC809 /* AddLocationViewController.swift in Sources */,
 				F54AA0571ECDF741001A31C4 /* TableViewController.swift in Sources */,
 				F509CFDB1EC6388700388EB4 /* LoginViewController.swift in Sources */,
 				F509CFD91EC6388700388EB4 /* AppDelegate.swift in Sources */,
 				F509CFF21EC64A1300388EB4 /* BorderedButton.swift in Sources */,
 				F5FA8C101EC8F28000E98099 /* UdacityConvenience.swift in Sources */,
 				F51BDFB31ECE46C600B43138 /* ParseConvenience.swift in Sources */,
+				F52CAB351ED0D1C100AFC809 /* LocationVerifyViewController.swift in Sources */,
 				F5FA8C121EC90D2000E98099 /* GCDBlackBox.swift in Sources */,
 				F521BECC1ECC9CB3001A18A3 /* MapViewController.swift in Sources */,
 				F54AA0591ECE318E001A31C4 /* ParseClient.swift in Sources */,
