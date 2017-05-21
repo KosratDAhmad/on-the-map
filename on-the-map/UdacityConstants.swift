@@ -47,7 +47,12 @@ extension UdacityClient{
         static let Session = "/session"
         
         // MARK: User Info
-        static let UserInfo = "/user/{id}"
+        static let UserInfo = "/users/{id}"
+    }
+    
+    // MARK: URL Keys
+    struct URLKeys {
+        static let UserID = "id"
     }
     
     // MARK: JSON Body Keys
@@ -66,5 +71,10 @@ extension UdacityClient{
         // MARK: Session
         static let Session = "session"
         static let SessionID = "id"
+        
+        // MARK: User Info
+        static let User = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
     }
 }
