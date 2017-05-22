@@ -41,4 +41,37 @@ extension ParseClient {
             }
         }
     }
+    
+    // MARK: Get a student location method.
+    
+    func getStudentLocation( completionHandlerForGetLocation: @escaping (_ result: StudentInformation?, _ error: String?) -> Void) {
+        
+        /* Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let method = Methods.StudentLocation
+        let parameters = [ParameterKeys.Where : ParameterValues.Where as AnyObject]
+        
+        /* Make the request */
+        let _ = taskForGETMethod(method, parameters: parameters) { (results, error) in
+            
+            /* Send the desired value(s) to completion handler */
+            if let error = error {
+                completionHandlerForGetLocation(nil, error.localizedDescription)
+            } else {
+                
+                if let results = results?[JSONResponseKeys.Results] as? [[String:AnyObject]] {
+                    
+                    if results.count != 0 {
+                        let location = StudentInformation(dictionary: results[0])
+                        completionHandlerForGetLocation(location, nil)
+                    } else {
+                        completionHandlerForGetLocation(nil, "It hasn't any points.")
+                    }
+                    
+                } else {
+                    
+                    completionHandlerForGetLocation(nil, "Could not parse getStudentLocation")
+                }
+            }
+        }
+    }
 }

@@ -37,6 +37,40 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         getLocations()
     }
     
+    /// Present a form to add location and it will display an alert message if the user added a point before to override or not.
+    ///
+    /// - Parameter sender: Add Location button item
+    @IBAction func addLocation(_ sender: Any) {
+        ParseClient.sharedInstance().getStudentLocation() { (location, error) in
+            
+            DispatchQueue.main.async {
+                
+                if let objectId = location?.objectId {
+                    
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.objectId = objectId
+                    
+                    let message = "User \"\(UdacityClient.sharedInstance().firstName!) \(UdacityClient.sharedInstance().lastName!)\" has already posted a student location. Would you like to overwrite their location?"
+                    let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+                    
+                    let dismissAction = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                        alert.dismiss(animated: true, completion: nil)
+                    })
+                    let overwriteAction = UIAlertAction(title: "Overwrite", style: .default, handler: { action in
+                        self.performSegue(withIdentifier: "AddLocation", sender: self)
+                    })
+                    
+                    alert.addAction(overwriteAction)
+                    alert.addAction(dismissAction)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                } else {
+                    self.performSegue(withIdentifier: "AddLocation", sender: self)
+                }
+            }
+        }
+    }
+    
     /// Logout from Udacity account.
     ///
     /// - Parameter sender: Logout button item

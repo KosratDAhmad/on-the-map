@@ -43,13 +43,13 @@ extension ParseClient {
         
         // MARK: Session
         static let StudentLocation = "/StudentLocation"
-        
     }
     
     // MARK: Parameter Keys
     struct ParameterKeys {
         static let Limit = "limit"
         static let Order = "order"
+        static let Where = "where"
     }
     
     // MARK: Parameter values
@@ -57,6 +57,7 @@ extension ParseClient {
         
         static let Limit = "100"
         static let Order = "-updatedAt"
+        static let Where = "{\"uniqueKey\":\"\(UdacityClient.sharedInstance().userID!)\"}"
     }
     
     // MARK: JSON Body Keys

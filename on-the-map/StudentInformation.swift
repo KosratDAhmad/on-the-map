@@ -12,6 +12,7 @@ struct StudentInformation {
     
     // MARK: Properties
     
+    let objectId: String
     let firstName: String
     let lastName: String
     let mediaURL: String
@@ -23,6 +24,7 @@ struct StudentInformation {
     // Construct a StudentLocation from a dictionary
     init(dictionary: [String:AnyObject]){
         
+        objectId = dictionary["objectId"] as! String
         firstName = dictionary["firstName"] as! String
         lastName = dictionary["lastName"] as! String
         mediaURL = dictionary["mediaURL"] as! String

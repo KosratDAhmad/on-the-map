@@ -93,10 +93,8 @@ extension UdacityClient {
                 
                 if let user = results?[JSONResponseKeys.User] as? [String:AnyObject] {
                     
-                    let firstName = user[JSONResponseKeys.FirstName] as! String
-                    let lastName = user[JSONResponseKeys.LastName] as! String
-                    
-                    self.userName = "\(firstName) \(lastName)"
+                    self.firstName = user[JSONResponseKeys.FirstName] as? String
+                    self.lastName = user[JSONResponseKeys.LastName] as? String
                     
                     completionHandlerForUserInfo(true, nil)
                     
