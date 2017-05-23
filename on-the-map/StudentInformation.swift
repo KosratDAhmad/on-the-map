@@ -13,8 +13,10 @@ struct StudentInformation {
     // MARK: Properties
     
     let objectId: String
+    let uniqueKey: String
     let firstName: String
     let lastName: String
+    let mapString: String
     let mediaURL: String
     let latitude: Double
     let longitude: Double
@@ -25,8 +27,16 @@ struct StudentInformation {
     init(dictionary: [String:AnyObject]){
         
         objectId = dictionary["objectId"] as! String
+        uniqueKey = dictionary["uniqueKey"] as! String
         firstName = dictionary["firstName"] as! String
         lastName = dictionary["lastName"] as! String
+        
+        if let mapString = dictionary["mapString"] {
+            self.mapString = mapString as! String
+        } else {
+            mapString = ""
+        }
+        
         mediaURL = dictionary["mediaURL"] as! String
         latitude = dictionary["latitude"] as! Double
         longitude = dictionary["longitude"] as! Double

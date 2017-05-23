@@ -24,18 +24,21 @@ extension ParseClient {
     struct HTTPMethods {
         static let Post = "POST"
         static let Get = "GET"
+        static let Put = "PUT"
     }
     
     // MARK: JSON Header keys
     struct HeadersKey {
         static let ApplicationIDKey = "X-Parse-Application-Id"
         static let ApiKey = "X-Parse-REST-API-Key"
+        static let ContentTypeKey = "Content-Type"
     }
     
     // Mark: JSON Header values
     struct HeadersValue {
         static let ApplicationIDValue = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let ApiKeyValue = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let ContentTypeValue = "application/json"
     }
     
     // MARK: Methods
@@ -43,6 +46,12 @@ extension ParseClient {
         
         // MARK: Session
         static let StudentLocation = "/StudentLocation"
+        static let UpdateStudentLocation = "/StudentLocation/{objectId}"
+    }
+    
+    // MARK: URL Keys
+    struct URLKeys {
+        static let ObjectID = "objectId"
     }
     
     // MARK: Parameter Keys
@@ -63,7 +72,13 @@ extension ParseClient {
     // MARK: JSON Body Keys
     struct JSONBodyKeys {
         
-        // TODO: Add necessory json body keys for post request.
+        static let UniqueKey = "uniqueKey"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
     }
     
     // MARK: JSON Response Key
@@ -71,10 +86,12 @@ extension ParseClient {
         
         // MARK: StudentLocation
         static let Results = "results"
+        static let ObjectId = "objectId"
         static let FirstName = "firstName"
         static let LastName = "lastName"
         static let MediaURL = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
+        static let UpdatedAt = "updatedAt"
     }
 }

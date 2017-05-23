@@ -46,8 +46,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 
                 if let objectId = location?.objectId {
                     
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.objectId = objectId
+                    // set object id used to update student location
+                    UdacityClient.sharedInstance().objectID = objectId
                     
                     let message = "User \"\(UdacityClient.sharedInstance().firstName!) \(UdacityClient.sharedInstance().lastName!)\" has already posted a student location. Would you like to overwrite their location?"
                     let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)

@@ -12,6 +12,7 @@ import MapKit
 class LocationVerifyViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var locationLatitude: CLLocationDegrees?
     var locationLongitude: CLLocationDegrees?
@@ -22,6 +23,7 @@ class LocationVerifyViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         mapView.delegate = self
+        activityIndicator.hidesWhenStopped = true
         
         // Add location to the navigation controller.
         navigationItem.title = "Add Location"
@@ -69,5 +71,75 @@ class LocationVerifyViewController: UIViewController, MKMapViewDelegate {
         }
         
         return pinView
+    }
+    
+    /// Post or Update student location
+    ///
+    /// - Parameter sender: Finish button
+    @IBAction func postStudentLocation(_ sender: Any) {
+        
+        activityIndicator.startAnimating()
+        
+        var dictionary = [String: AnyObject]()
+        dictionary["objectId"] = "" as AnyObject
+        dictionary["uniqueKey"] = UdacityClient.sharedInstance().userID as AnyObject
+        dictionary["firstName"] = UdacityClient.sharedInstance().firstName as AnyObject
+        dictionary["lastName"] = UdacityClient.sharedInstance().lastName as AnyObject
+        dictionary["mapString"] = locationTitle as AnyObject
+        dictionary["mediaURL"] = website as AnyObject
+        dictionary["latitude"] = Double(locationLatitude!) as AnyObject
+        dictionary["longitude"] = Double(locationLongitude!) as AnyObject
+        
+        let studentLocation = StudentInformation(dictionary: dictionary)
+        
+        if let _ = UdacityClient.sharedInstance().objectID {
+            ParseClient.sharedInstance().updateStudentLocation(studentLocation) { (success, error) in
+                performUIUpdatesOnMain {
+                    self.activityIndicator.stopAnimating()
+                    if success {
+                        self.finishAddLocation()
+                    } else {
+                        print(error!)
+                        self.displayError("Failed to Update Location.")
+                    }
+                }
+            }
+            
+        } else {
+            ParseClient.sharedInstance().postStudentLocation(studentLocation) { (success, error) in
+                performUIUpdatesOnMain {
+                    self.activityIndicator.stopAnimating()
+                    if success {
+                        self.finishAddLocation()
+                    } else {
+                        print(error!)
+                        self.displayError("Failed to Post Location.")
+                    }
+                }
+            }
+        }
+    }
+    
+    /// Display error message to the user by using UIAlertAction
+    ///
+    /// - Parameter message: Error message
+    private func displayError(_ message: String){
+        
+        let alert = UIAlertController(title: "Location Not Found", message: message, preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(dismissAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func finishAddLocation(){
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.studentLocation = [StudentInformation]()
+        
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "TabBarController")
+        present(viewController!, animated: true, completion: nil)
     }
 }

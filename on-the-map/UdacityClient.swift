@@ -19,6 +19,7 @@ class UdacityClient: NSObject {
     // authentication state
     var sessionID: String? = nil
     var userID: String? = nil
+    var objectID: String? = nil
     var firstName: String? = nil
     var lastName: String? = nil
     

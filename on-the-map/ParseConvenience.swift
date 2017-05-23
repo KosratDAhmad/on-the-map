@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Add conveniention methods to the ParseClient class.
 extension ParseClient {
-
+    
     // MARK: Get Student Location Method.
     
     func getStudentLocations(completionHandlerForGetLocation: @escaping (_ result: [StudentInformation]?, _ error: String?) -> Void) {
@@ -70,6 +70,62 @@ extension ParseClient {
                 } else {
                     
                     completionHandlerForGetLocation(nil, "Could not parse getStudentLocation")
+                }
+            }
+        }
+    }
+    
+    // MARK: Post student location method
+    
+    func postStudentLocation(_ studentInfo: StudentInformation, completionHandlerForPost: @escaping (_ success: Bool, _ error: String?) -> Void) {
+        
+        /* Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let method = Methods.StudentLocation
+        let jsonBody = "{ \"\(JSONBodyKeys.UniqueKey)\": \"\(studentInfo.uniqueKey)\", \"\(JSONBodyKeys.FirstName)\": \"\(studentInfo.firstName)\", \"\(JSONBodyKeys.LastName)\": \"\(studentInfo.lastName)\", \"\(JSONBodyKeys.MapString)\": \"\(studentInfo.mapString)\", \"\(JSONBodyKeys.MediaURL)\": \"\(studentInfo.mediaURL)\", \"\(JSONBodyKeys.Latitude)\": \(studentInfo.latitude), \"\(JSONBodyKeys.Longitude)\": \(studentInfo.longitude)}"
+        
+        /* Make the request */
+        let _ = taskForPOSTMethod(method, parameters: [:], jsonBody: jsonBody) { (results, error) in
+            
+            /* Send the desired value(s) to completion handler */
+            if let error = error {
+                completionHandlerForPost(false, error.localizedDescription)
+            } else {
+                if let _ = results?[JSONResponseKeys.ObjectId] as? String {
+                    
+                    completionHandlerForPost(true, nil)
+                    
+                } else {
+                    
+                    completionHandlerForPost(false, "Could not parse postStudentLocation")
+                }
+            }
+        }
+    }
+    
+    // MARK: Update student location method
+    
+    func updateStudentLocation(_ studentInfo: StudentInformation, completionHandlerForPost: @escaping (_ success: Bool, _ error: String?) -> Void) {
+        
+        /* Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        var mutableMethod = Methods.UpdateStudentLocation
+        mutableMethod = substituteKeyInMethod(mutableMethod, key: ParseClient.URLKeys.ObjectID, value: String(UdacityClient.sharedInstance().objectID!))!
+        let jsonBody = "{ \"\(JSONBodyKeys.UniqueKey)\": \"\(studentInfo.uniqueKey)\", \"\(JSONBodyKeys.FirstName)\": \"\(studentInfo.firstName)\", \"\(JSONBodyKeys.LastName)\": \"\(studentInfo.lastName)\", \"\(JSONBodyKeys.MapString)\": \"\(studentInfo.mapString)\", \"\(JSONBodyKeys.MediaURL)\": \"\(studentInfo.mediaURL)\", \"\(JSONBodyKeys.Latitude)\": \(studentInfo.latitude), \"\(JSONBodyKeys.Longitude)\": \(studentInfo.longitude)}"
+        
+        /* Make the request */
+        let _ = taskForPUTMethod(mutableMethod, parameters: [:], jsonBody: jsonBody) { (results, error) in
+            
+            /* Send the desired value(s) to completion handler */
+            if let error = error {
+                completionHandlerForPost(false, error.localizedDescription)
+            } else {
+                
+                if let _ = results?[JSONResponseKeys.UpdatedAt] as? String {
+                    
+                    completionHandlerForPost(true, nil)
+                    
+                } else {
+                    
+                    completionHandlerForPost(false, "Could not parse updateStudentLocation")
                 }
             }
         }

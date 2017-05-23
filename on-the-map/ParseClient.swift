@@ -69,7 +69,116 @@ class ParseClient: NSObject {
         return task
     }
     
+    // MARK: POST
+    
+    func taskForPOSTMethod (_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+        
+        // Build the URL, configure the request
+        let request = NSMutableURLRequest(url: parseURLFromParameters(parameters, withPathExtension: method))
+        request.httpMethod = HTTPMethods.Post
+        request.addValue(HeadersValue.ApiKeyValue, forHTTPHeaderField: HeadersKey.ApiKey)
+        request.addValue(HeadersValue.ApplicationIDValue, forHTTPHeaderField: HeadersKey.ApplicationIDKey)
+        request.addValue(HeadersValue.ContentTypeValue, forHTTPHeaderField: HeadersKey.ContentTypeKey)
+
+        request.httpBody = jsonBody.data(using: .utf8)
+        
+        // Make the request
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            func sendError(_ error: String){
+                print(error)
+                
+                let userInfo = [NSLocalizedDescriptionKey: error]
+                completionHandlerForPOST(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+            }
+            
+            /* GUARD: Was there an error? */
+            guard error == nil else {
+                sendError("There was an error with your request: \(String(describing: error))")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode < 300 else {
+                sendError("Your request returned a status code other than 2XX!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
+            /* Parse the data and use the data (happens in completion handler) */
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
+            
+        }
+        
+        task.resume()
+        
+        return task
+    }
+    
+    // MARK: PUT 
+    func taskForPUTMethod (_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPUT: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+        
+        // Build the URL, configure the request
+        let request = NSMutableURLRequest(url: parseURLFromParameters(parameters, withPathExtension: method))
+        request.httpMethod = HTTPMethods.Put
+        request.addValue(HeadersValue.ApiKeyValue, forHTTPHeaderField: HeadersKey.ApiKey)
+        request.addValue(HeadersValue.ApplicationIDValue, forHTTPHeaderField: HeadersKey.ApplicationIDKey)
+        request.addValue(HeadersValue.ContentTypeValue, forHTTPHeaderField: HeadersKey.ContentTypeKey)
+        
+        request.httpBody = jsonBody.data(using: .utf8)
+        
+        // Make the request
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            func sendError(_ error: String){
+                print(error)
+                
+                let userInfo = [NSLocalizedDescriptionKey: error]
+                completionHandlerForPUT(nil, NSError(domain: "taskForPUTMethod", code: 1, userInfo: userInfo))
+            }
+            
+            /* GUARD: Was there an error? */
+            guard error == nil else {
+                sendError("There was an error with your request: \(String(describing: error))")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode < 300 else {
+                sendError("Your request returned a status code other than 2XX!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
+            /* Parse the data and use the data (happens in completion handler) */
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPUT)
+        }
+        
+        task.resume()
+        
+        return task
+    }
+
     // MARK: Helpers 
+    
+    // substitute the key for the value that is contained within the method name
+    func substituteKeyInMethod(_ method: String, key: String, value: String) -> String? {
+        if method.range(of: "{\(key)}") != nil {
+            return method.replacingOccurrences(of: "{\(key)}", with: value)
+        } else {
+            return nil
+        }
+    }
     
     // given raw JSON, return a usable Foundation object
     private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {

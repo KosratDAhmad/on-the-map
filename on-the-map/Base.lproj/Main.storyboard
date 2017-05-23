@@ -157,6 +157,7 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xgj-CP-GPt">
                                 <rect key="frame" x="-16" y="64" width="407" height="554"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.38" colorSpace="calibratedRGB"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -302,7 +303,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79a-3z-lz3" customClass="BorderedButton" customModule="on_the_map" customModuleProvider="target">
-                                <rect key="frame" x="62.5" y="611" width="250" height="40"/>
+                                <rect key="frame" x="62.5" y="607" width="250" height="40"/>
                                 <color key="backgroundColor" red="0.25066739319999998" green="0.55463379619999997" blue="0.69811868669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="PcX-H1-ygB"/>
@@ -313,26 +314,37 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pVt-v8-cVU"/>
+                                    <action selector="postStudentLocation:" destination="0VI-XR-Irb" eventType="touchUpInside" id="mHV-VH-BhS"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Vdw-rl-IYp">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.38" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rby-YF-hVY" firstAttribute="top" secondItem="pXS-qd-Thz" secondAttribute="bottom" id="C0g-Z6-Tds"/>
-                            <constraint firstItem="cXu-CK-I2d" firstAttribute="top" secondItem="79a-3z-lz3" secondAttribute="bottom" constant="16" id="Gb3-1M-tJs"/>
-                            <constraint firstItem="rby-YF-hVY" firstAttribute="leading" secondItem="VYH-eX-Uyd" secondAttribute="leadingMargin" constant="-16" id="OK9-WY-qdT"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rby-YF-hVY" secondAttribute="trailing" constant="-16" id="WpM-Nu-wpg"/>
-                            <constraint firstItem="cXu-CK-I2d" firstAttribute="top" secondItem="rby-YF-hVY" secondAttribute="bottom" id="YJr-TK-NUC"/>
-                            <constraint firstItem="79a-3z-lz3" firstAttribute="centerX" secondItem="VYH-eX-Uyd" secondAttribute="centerX" id="qhI-sG-Kuf"/>
+                            <constraint firstItem="79a-3z-lz3" firstAttribute="centerX" secondItem="VYH-eX-Uyd" secondAttribute="centerX" id="1Th-YQ-2Wx"/>
+                            <constraint firstItem="cXu-CK-I2d" firstAttribute="top" secondItem="79a-3z-lz3" secondAttribute="bottom" constant="20" id="K1o-5p-WPY"/>
+                            <constraint firstItem="cXu-CK-I2d" firstAttribute="top" secondItem="rby-YF-hVY" secondAttribute="bottom" id="Lmu-gf-LVB"/>
+                            <constraint firstAttribute="trailing" secondItem="rby-YF-hVY" secondAttribute="trailing" id="QoW-WJ-UZb"/>
+                            <constraint firstItem="rby-YF-hVY" firstAttribute="leading" secondItem="VYH-eX-Uyd" secondAttribute="leading" id="SgD-UF-o0N"/>
+                            <constraint firstItem="Vdw-rl-IYp" firstAttribute="top" secondItem="pXS-qd-Thz" secondAttribute="bottom" id="Zrl-nM-v5u"/>
+                            <constraint firstItem="cXu-CK-I2d" firstAttribute="top" secondItem="Vdw-rl-IYp" secondAttribute="bottom" id="aFd-dQ-P1g"/>
+                            <constraint firstAttribute="trailing" secondItem="Vdw-rl-IYp" secondAttribute="trailing" id="h7o-tD-KS6"/>
+                            <constraint firstItem="rby-YF-hVY" firstAttribute="top" secondItem="pXS-qd-Thz" secondAttribute="bottom" id="xaw-1S-DDe"/>
+                            <constraint firstItem="Vdw-rl-IYp" firstAttribute="leading" secondItem="VYH-eX-Uyd" secondAttribute="leading" id="yg9-nl-7Eq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Vdw-rl-IYp" id="lkM-hL-8c9"/>
                         <outlet property="mapView" destination="rby-YF-hVY" id="qGf-gR-CqA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzC-iH-D7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5994" y="233"/>
+            <point key="canvasLocation" x="5953" y="242"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="BfZ-gq-OlG">
@@ -352,6 +364,7 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pMr-rr-yfc">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.37759524828767121" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
