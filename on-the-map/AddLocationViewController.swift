@@ -20,7 +20,7 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Detect tap gesture to dismiss keyboard if it is opened.
-        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.DismissKeyboard))
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(dismiss)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -33,11 +33,14 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     /// Dismiss keyboard if it is opened.
-    func DismissKeyboard(){
+    func dismissKeyboard(){
         view.endEditing(true)
     }
 
     @IBAction func findLocation(_ sender: Any) {
+        
+        // dismiss keyboard if opened.
+        dismissKeyboard()
         
         let location = locationTextField.text
         let website = websiteTextField.text?.lowercased()
