@@ -14,6 +14,7 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var theScrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,9 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         // Detect tap gesture to dismiss keyboard if it is opened.
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.DismissKeyboard))
         view.addGestureRecognizer(dismiss)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         activityIndicator.hidesWhenStopped = true
         
@@ -108,5 +112,21 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
             websiteTextField.becomeFirstResponder()
         }
         return true
+    }
+    
+    func keyboardWillShow(notification:NSNotification){
+        //give room at the bottom of the scroll view, so it doesn't cover up anything the user needs to tap
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.theScrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.theScrollView.contentInset = contentInset
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.theScrollView.contentInset = contentInset
     }
 }

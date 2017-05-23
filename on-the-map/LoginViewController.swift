@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: BorderedButton!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var theScrollView: UIScrollView!
     
     var reachability: Reachability?
     var isNetwordReached = false
@@ -27,6 +28,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.DismissKeyboard))
         view.addGestureRecognizer(dismiss)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+
         indicatorView.hidesWhenStopped = true
         
         emailTextField.delegate = self
@@ -152,5 +156,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         }
         return true
+    }
+    
+    func keyboardWillShow(notification:NSNotification){
+        //give room at the bottom of the scroll view, so it doesn't cover up anything the user needs to tap
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.theScrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.theScrollView.contentInset = contentInset
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.theScrollView.contentInset = contentInset
     }
 }
