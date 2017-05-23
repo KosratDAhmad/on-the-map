@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddLocationViewController: UIViewController {
+class AddLocationViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
@@ -18,9 +18,21 @@ class AddLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Detect tap gesture to dismiss keyboard if it is opened.
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.DismissKeyboard))
+        view.addGestureRecognizer(dismiss)
+        
         activityIndicator.hidesWhenStopped = true
+        
+        locationTextField.delegate = self
+        websiteTextField.delegate = self
     }
     
+    /// Dismiss keyboard if it is opened.
+    func DismissKeyboard(){
+        view.endEditing(true)
+    }
+
     @IBAction func findLocation(_ sender: Any) {
         
         let location = locationTextField.text
@@ -85,5 +97,16 @@ class AddLocationViewController: UIViewController {
         })
         alert.addAction(dismissAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: Delegates 
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if textField == locationTextField {
+            websiteTextField.becomeFirstResponder()
+        }
+        return true
     }
 }

@@ -23,6 +23,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Detect tap gesture to dismiss keyboard if it is opened.
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.DismissKeyboard))
+        view.addGestureRecognizer(dismiss)
+        
         indicatorView.hidesWhenStopped = true
         
         emailTextField.delegate = self
@@ -31,8 +35,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Start reachability 
         setupReachability()
         startNotifier()
-        
-        
+    }
+    
+    /// Dismiss keyboard if it is opened.
+    func DismissKeyboard(){
+        view.endEditing(true)
     }
     
     // MARK: Reachability methods.
