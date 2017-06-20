@@ -136,8 +136,7 @@ class LocationVerifyViewController: UIViewController, MKMapViewDelegate {
     
     private func finishAddLocation(){
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.studentLocation = [StudentInformation]()
+        StudentInformations.data = [StudentInformation]()
         
         let viewController = storyboard?.instantiateViewController(withIdentifier: "TabBarController")
         present(viewController!, animated: true, completion: nil)

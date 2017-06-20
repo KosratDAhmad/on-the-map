@@ -20,12 +20,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         activityIndicator.hidesWhenStopped = true
         mapView.delegate = self
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        if appDelegate.studentLocation.count == 0 {
+        if StudentInformations.data.count == 0 {
             getLocations()
         } else {
-            addPoints(appDelegate.studentLocation)
+            addPoints(StudentInformations.data)
         }
     }
     
@@ -110,9 +108,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
             
             DispatchQueue.main.async {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.studentLocation = results!
-                
+                StudentInformations.data = results!                
                 self.addPoints(results!)
             }
         }

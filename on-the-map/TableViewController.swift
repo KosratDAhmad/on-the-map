@@ -20,13 +20,11 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         tableView.delegate = self
         activityIndicator.hidesWhenStopped = true
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        if appDelegate.studentLocation.count == 0 {
+                
+        if StudentInformations.data.count == 0 {
             getLocations()
         } else {
-            locations = appDelegate.studentLocation
+            locations = StudentInformations.data
         }
     }
     
@@ -112,9 +110,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             DispatchQueue.main.async {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.studentLocation = results!
-                self.locations = appDelegate.studentLocation
+                StudentInformations.data = results!
+                self.locations = StudentInformations.data
                 self.tableView.reloadData()
             }
         }
