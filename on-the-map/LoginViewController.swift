@@ -104,7 +104,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             if isNetwordReached {
                 UdacityClient.sharedInstance().login(email: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
-                    performUIUpdatesOnMain {
+                    self.performUIUpdatesOnMain {
                         self.indicatorView.stopAnimating()
                         if success {
                             self.completeLogin()
@@ -132,22 +132,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private func completeLogin(){
         let controller = storyboard!.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
         present(controller, animated: true, completion: nil)
-    }
-    
-    /// Display error message to the user by using UIAlertAction
-    ///
-    /// - Parameter message: Error message
-    private func displayError(_ message: String){
-        
-        indicatorView.stopAnimating()
-        
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
-            self.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(dismissAction)
-        present(alert, animated: true, completion: nil)
     }
     
     // MARK: Delegates

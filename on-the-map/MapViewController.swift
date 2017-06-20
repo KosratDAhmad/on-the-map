@@ -14,13 +14,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         activityIndicator.hidesWhenStopped = true
         mapView.delegate = self
         
         if StudentInformations.data.count == 0 {
+            print(StudentInformations.data.count)
             getLocations()
         } else {
             addPoints(StudentInformations.data)
@@ -81,8 +82,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.activityIndicator.stopAnimating()
                 
                 if success {
-                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginView")
-                    self.present(controller, animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 } else {
                     self.displayError("There was an error while trying to logout.")
                 }
@@ -142,8 +142,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotations.append(annotation)
         }
         
-        // When the array is complete, we add the annotations to the map.
-        self.mapView.addAnnotations(annotations)
+        // Remove previous map annotations.
+        if mapView.annotations.count > 0 {
+            mapView.removeAnnotations(mapView.annotations)
+        }
+        // Add the new annotations to the map.
+        mapView.addAnnotations(annotations)
     }
     
     // MARK: - MKMapViewDelegate
@@ -184,19 +188,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
-    }
-    
-    /// Display error message to the user by using UIAlertAction
-    ///
-    /// - Parameter message: Error message
-    private func displayError(_ message: String){
-        
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
-            alert.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(dismissAction)
-        present(alert, animated: true, completion: nil)
     }
 }

@@ -92,20 +92,6 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    /// Display error message to the user by using UIAlertAction
-    ///
-    /// - Parameter message: Error message
-    private func displayError(_ message: String){
-        
-        let alert = UIAlertController(title: "Location Not Found", message: message, preferredStyle: .alert)
-        
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
-            alert.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(dismissAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
     // MARK: Delegates 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

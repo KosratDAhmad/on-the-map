@@ -94,7 +94,7 @@ class LocationVerifyViewController: UIViewController, MKMapViewDelegate {
         
         if let _ = UdacityClient.sharedInstance().objectID {
             ParseClient.sharedInstance().updateStudentLocation(studentLocation) { (success, error) in
-                performUIUpdatesOnMain {
+                self.performUIUpdatesOnMain {
                     self.activityIndicator.stopAnimating()
                     if success {
                         self.finishAddLocation()
@@ -107,7 +107,7 @@ class LocationVerifyViewController: UIViewController, MKMapViewDelegate {
             
         } else {
             ParseClient.sharedInstance().postStudentLocation(studentLocation) { (success, error) in
-                performUIUpdatesOnMain {
+                self.performUIUpdatesOnMain {
                     self.activityIndicator.stopAnimating()
                     if success {
                         self.finishAddLocation()
@@ -120,25 +120,10 @@ class LocationVerifyViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    /// Display error message to the user by using UIAlertAction
-    ///
-    /// - Parameter message: Error message
-    private func displayError(_ message: String){
-        
-        let alert = UIAlertController(title: "Location Not Found", message: message, preferredStyle: .alert)
-        
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: { action in
-            alert.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(dismissAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
     private func finishAddLocation(){
         
         StudentInformations.data = [StudentInformation]()
         
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "TabBarController")
-        present(viewController!, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

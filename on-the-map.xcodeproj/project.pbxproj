@@ -22,8 +22,8 @@
 		F54AA0591ECE318E001A31C4 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54AA0581ECE318E001A31C4 /* ParseClient.swift */; };
 		F54AA05B1ECE404B001A31C4 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54AA05A1ECE404B001A31C4 /* ParseConstants.swift */; };
 		F5827BB61EF90F13003A0F63 /* StudentInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5827BB51EF90F13003A0F63 /* StudentInformations.swift */; };
+		F597342B1EF937F8003BA7E9 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F597342A1EF937F8003BA7E9 /* ViewControllerExtension.swift */; };
 		F5FA8C101EC8F28000E98099 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA8C0F1EC8F28000E98099 /* UdacityConvenience.swift */; };
-		F5FA8C121EC90D2000E98099 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA8C111EC90D2000E98099 /* GCDBlackBox.swift */; };
 		F5FB3D3A1EC797F000C39AB2 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FB3D391EC797F000C39AB2 /* UdacityClient.swift */; };
 		F5FB3D3C1EC7983B00C39AB2 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FB3D3B1EC7983B00C39AB2 /* UdacityConstants.swift */; };
 		F6BEA81E5735B6E0E2B02174 /* Pods_on_the_map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D251BAD05C74DFFC856F67 /* Pods_on_the_map.framework */; };
@@ -50,8 +50,8 @@
 		F54AA0581ECE318E001A31C4 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		F54AA05A1ECE404B001A31C4 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		F5827BB51EF90F13003A0F63 /* StudentInformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformations.swift; sourceTree = "<group>"; };
+		F597342A1EF937F8003BA7E9 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		F5FA8C0F1EC8F28000E98099 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
-		F5FA8C111EC90D2000E98099 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		F5FB3D391EC797F000C39AB2 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		F5FB3D3B1EC7983B00C39AB2 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				F509CFD81EC6388700388EB4 /* AppDelegate.swift */,
-				F5FA8C111EC90D2000E98099 /* GCDBlackBox.swift */,
 				F509CFEA1EC63B0B00388EB4 /* Models */,
 				F54AA0541ECDEE92001A31C4 /* StudentInformation.swift */,
 				F5827BB51EF90F13003A0F63 /* StudentInformations.swift */,
@@ -143,6 +142,7 @@
 				F54AA0561ECDF741001A31C4 /* TableViewController.swift */,
 				F52CAB321ED0D17300AFC809 /* AddLocationViewController.swift */,
 				F52CAB341ED0D1C100AFC809 /* LocationVerifyViewController.swift */,
+				F597342A1EF937F8003BA7E9 /* ViewControllerExtension.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -330,8 +330,8 @@
 				F5FA8C101EC8F28000E98099 /* UdacityConvenience.swift in Sources */,
 				F51BDFB31ECE46C600B43138 /* ParseConvenience.swift in Sources */,
 				F52CAB351ED0D1C100AFC809 /* LocationVerifyViewController.swift in Sources */,
-				F5FA8C121EC90D2000E98099 /* GCDBlackBox.swift in Sources */,
 				F521BECC1ECC9CB3001A18A3 /* MapViewController.swift in Sources */,
+				F597342B1EF937F8003BA7E9 /* ViewControllerExtension.swift in Sources */,
 				F54AA0591ECE318E001A31C4 /* ParseClient.swift in Sources */,
 				F54AA05B1ECE404B001A31C4 /* ParseConstants.swift in Sources */,
 			);
